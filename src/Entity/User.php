@@ -1,66 +1,27 @@
 <?php
+// src/AppBundle/Entity/User.php
+
 namespace App\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\EquatableInterface;
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
 
-class User implements UserInterface, EquatableInterface
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fos_user")
+ */
+class User extends BaseUser
 {
-    private $username;
-    private $password;
-    private $salt;
-    private $roles;
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
 
-    public function __construct($username, $password, $salt, array $roles)
+    public function __construct()
     {
-        $this->username = $username;
-        $this->password = $password;
-        $this->salt = $salt;
-        $this->roles = $roles;
-    }
-
-    public function getRoles()
-    {
-        return $this->roles;
-    }
-
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    public function getSalt()
-    {
-        return $this->salt;
-    }
-
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    public function eraseCredentials()
-    {
-    }
-
-    public function isEqualTo(UserInterface $user)
-    {
-        if (!$user instanceof User) {
-        return false;
-        }
-
-        if ($this->password !== $user->getPassword()) {
-        return false;
-        }
-
-        if ($this->salt !== $user->getSalt()) {
-        return false;
-        }
-
-        if ($this->username !== $user->getUsername()) {
-        return false;
-        }
-
-        return true;
+        parent::__construct();
+        // your own logic
     }
 }

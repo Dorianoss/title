@@ -7,3 +7,5 @@ fos_oauth_server:
 
   service:
     user_provider: App\Security\UserProvider
+    options:
+      supported_scopes: scope1

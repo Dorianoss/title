@@ -2,9 +2,8 @@
 
 namespace App\Security;
 
-use App\Security\User;
+use App\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
-use PhpParser\Node\Stmt\Catch_;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -48,7 +47,7 @@ class UserProvider implements UserProviderInterface
     private function fetchUser($username)
     {
         // make a call to your webservice here
-        $User = $this->objectManager->getRepository(User::class)->findOneBy($username);
+        $User = $this->objectManager->getRepository(User::class)->findOneBy(['username' => $username]);
         if ($User)
         {
             return $User;
