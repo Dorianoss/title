@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "friendsofsymfony/oauth-server-bundle": "^1.6",
+        "friendsofsymfony/user-bundle": "^2.1",
         "sensio/framework-extra-bundle": "^5.2",
         "symfony/console": "^4.1",
         "symfony/flex": "^1.0",
@@ -15,6 +16,7 @@
         "symfony/maker-bundle": "^1.6",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "^4.1",
+        "symfony/swiftmailer-bundle": "^3.2",
         "symfony/templating": "^4.1",
         "symfony/twig-bundle": "^4.1",
         "symfony/yaml": "^4.1"

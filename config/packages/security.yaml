@@ -6,8 +6,11 @@ security:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
+        oauth_provider:
+            id: security.authentication.provider.fos_oauth_server.api
         fos_userbundle:
             id: fos_user.user_provider.username
 
@@ -15,14 +18,14 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            pattern: ^/
-            form_login:
-                provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
-
-            logout:       true
-            anonymous:    true
+#        main:
+#            pattern: ^/
+#            form_login:
+#                provider: fos_userbundle
+#                csrf_token_generator: security.csrf.token_manager
+#
+#            logout:       true
+#            anonymous:    true
 
         oauth_token:
             pattern:    ^/oauth/v2/token
@@ -37,8 +40,8 @@ security:
             pattern:    ^/api
             fos_oauth:  true
             stateless:  true
-            anonymous:  false # can be omitted as its default value
-
+            anonymous:  true # can be omitted as its default value
+            provider: oauth_provider
             # activate different ways to authenticate
 
             # http_basic: true
@@ -52,7 +55,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-#        - { path: ^/api, role: ROLE_SCOPE1 }
+        - { path: ^/api, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
