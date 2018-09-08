@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TitleController extends AbstractController
@@ -15,5 +16,13 @@ class TitleController extends AbstractController
     {
         return new JsonResponse(['title' => uniqid()]);
 
+    }
+
+    /**
+     * @Route("/", name="foo")
+     */
+    public function foo()
+    {
+        return new Response('<body></body>');
     }
 }
