@@ -7,5 +7,3 @@ fos_oauth_server:
 
   service:
     user_provider: fos_user.user_provider.username
-    options:
-      supported_scopes: scope1
