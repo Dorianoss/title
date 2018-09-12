@@ -21,7 +21,7 @@ services:
     environment:
       - SYMFONY_VERSION
 
-  mysql:
+  mysql_api:
     image: mysql:5.7
     restart: always
     environment:
@@ -32,7 +32,7 @@ services:
     ports:
       - 3357:3307
 
-  nginx:
+  nginx_api:
     build:
       context: .
       target: symfony_docker_nginx
@@ -46,7 +46,7 @@ services:
       - '8000:80'
 
   # This HTTP/2 proxy is not secure: it should only be used in dev
-  h2-proxy:
+  h2-proxy_api:
     build:
       context: .
       target: symfony_docker_h2-proxy
