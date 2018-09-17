@@ -21,16 +21,15 @@ services:
     environment:
       - SYMFONY_VERSION
 
-  mysql_api:
+  mysqlapi:
     image: mysql:5.7
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: db_name
       MYSQL_USER: db_user
       MYSQL_PASSWORD: db_password
     ports:
-      - 3357:3307
+      - 3357:3306
 
   nginx_api:
     build:
@@ -59,3 +58,5 @@ networks:
   default:
     external:
       name: symfony_backend
+
+

@@ -33,3 +33,8 @@ services:
     App\EventListener\RequestListener:
         tags:
         - { name: kernel.request_listener, event: kernel.request }
+
+    App\DataFixtures\:
+        resource: '../src/DataFixtures'
+        tags: ['doctrine.fixture.orm']
+
